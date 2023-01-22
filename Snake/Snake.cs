@@ -13,10 +13,12 @@ class Snake {
     private const int height = 16;
     private const int width = 36;
     private static int snakeLength;
-    private static int snakeX = 5;
-    private static int snakeY = 7;
+    private static int headX = 5;
+    private static int headY = 7;
     private static int fruitX = 12; // change this to random number
     private static int fruitY = 7; // change this to random number
+    private static int trunkCount = 0;
+    private static int[,] trunk = new int[20,2];
 
     static void draw() {
         Console.Clear();
@@ -36,8 +38,11 @@ class Snake {
                 {
                     if (i == fruitY && k == fruitX) // print fruit
                         Console.Write("F");
-                    else if (i == snakeY && k == snakeX) // print snake head
+                    else if (i == headY && k == headX) // print snake head
                         Console.Write("O");
+                    else if (i == trunk[i, 0] && k == trunk[i, k]) {
+                        Console.Write("o");
+                    }
                     else if (k < width - 1)
                         Console.Write(" ");
 
@@ -55,6 +60,11 @@ class Snake {
 
             Console.WriteLine();
         }
+
+        Console.WriteLine(trunk[0, 0]);
+        Console.WriteLine(trunk[0, 1]);
+        Console.WriteLine(trunk[1, 0]);
+        Console.WriteLine(trunk[1, 1]);
     }
 
 
@@ -67,34 +77,53 @@ class Snake {
             //Console.WriteLine(key);
             switch (key) {
                 case 'w':
-                    snakeY--;
+                    headY--;
                     break;
                 case 's':
-                    snakeY++;
+                    headY++;
                     break;
                 case 'a':
-                    snakeX--;
+                    headX--;
                     break;
                 case 'd':
-                    snakeX++;
+                    headX++;
                     break;
                 default:
                     break;
             }
         }
     }
-
+    
+    /*
+     * Logic to do list:
+     * - need to establish rule for body to follow head correctly
+     * - need to add one body part per fruit consumed
+     * - need to set bounds to play area (may be in different function though)
+     * - also need to make sure body continues in direction at certain speed (even if player does not touch anything)
+     * - once fruit is eaten, generate new random number for fruit pos
+     */
     static void logic() {
-        
+        if (headX == fruitX && headY == fruitY) {
+            Random random = new Random();
+            fruitX = random.Next(1, width - 1);
+            fruitY = random.Next(1, height - 1);
+            trunkCount++;//don't think I need this
+            trunk[0, 0] = headY;
+            trunk[0, 1] = headX;
+            for (int i = trunkCount; i > 0; i--) {
+                trunk[i, 0] = trunk[i - 1, 0];
+                trunk[i, 1] = trunk[i - 1, 1];      //probably screwed up here
+            }
+            
+        }
     }
 
 
     static void Main(string[] args) {
         while (play) {
-            //Console.Clear();
             draw();
             input();
-            //logic();//TODO
+            logic();
             Thread.Sleep(second/30);
         }
     }
