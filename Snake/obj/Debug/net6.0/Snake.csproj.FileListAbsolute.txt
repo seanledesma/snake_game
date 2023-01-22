@@ -1,0 +1,30 @@
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.deps.json
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.runtimeconfig.json
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.dll
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/ref/Snake.dll
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.pdb
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.csproj.AssemblyReference.cache
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.GeneratedMSBuildEditorConfig.editorconfig
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.AssemblyInfoInputs.cache
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.AssemblyInfo.cs
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.csproj.CoreCompileInputs.cache
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.dll
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/ref/Snake.dll
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.pdb
+/home/sean/Documents/Other Projects/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.genruntimeconfig.cache
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.deps.json
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.runtimeconfig.json
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.dll
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/ref/Snake.dll
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/bin/Debug/net6.0/Snake.pdb
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.csproj.AssemblyReference.cache
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.GeneratedMSBuildEditorConfig.editorconfig
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.AssemblyInfoInputs.cache
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.AssemblyInfo.cs
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.csproj.CoreCompileInputs.cache
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.dll
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/ref/Snake.dll
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.pdb
+/home/sean/Documents/Hobbies/Programming Projects/C#-Projects/Snake/Snake/obj/Debug/net6.0/Snake.genruntimeconfig.cache
