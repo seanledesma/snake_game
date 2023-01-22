@@ -19,6 +19,7 @@ class Snake {
     private static int fruitY = 7; // change this to random number
     private static int trunkCount = 0;
     private static int[,] trunk = new int[20,2];
+    
 
     static void draw() {
         Console.Clear();
@@ -34,20 +35,34 @@ class Snake {
             Console.Write("#"); // print left side
 
             if (i > 0 && i < height - 1) {
-                for (int k = 0; k < width; k++) // print right side
-                {
+                for (int k = 0; k < width; k++) { // print right side
+
+                    
+
+                    
+                    if (i == headY && k == headX) // print snake head
+                        Console.Write("O");
+                    else {
+                        for (int m = 0; m <= trunkCount; m++) {
+                            if (trunk[m, 0] == i && trunk[m, 1] == k) {
+                                //i == trunk[0, 0] && k == trunk[0, 1
+                                Console.Write("o");
+                            }
+                                
+                                
+                        }
+                    }
+                    
                     if (i == fruitY && k == fruitX) // print fruit
                         Console.Write("F");
-                    else if (i == headY && k == headX) // print snake head
-                        Console.Write("O");
-                    else if (i == trunk[i, 0] && k == trunk[i, k]) {
-                        Console.Write("o");
-                    }
-                    else if (k < width - 1)
+                    else if (k < width - 1) {
                         Console.Write(" ");
-
+                    }
+                    
                     if (k == width - 1)
                         Console.Write("#");
+                        
+                    
                 }
             }
 
@@ -61,13 +76,31 @@ class Snake {
             Console.WriteLine();
         }
 
+        Console.WriteLine("trunkCount size: " + trunkCount);
+        Console.WriteLine("headY: " + headY);
+        Console.WriteLine("headX: " + headX);
         Console.WriteLine(trunk[0, 0]);
         Console.WriteLine(trunk[0, 1]);
         Console.WriteLine(trunk[1, 0]);
         Console.WriteLine(trunk[1, 1]);
     }
-
-
+    
+    
+    static void slither(int y, int x) {
+        //TODO: get the snake to slither once a second independent of game loop
+        //but for right now just get body to follow head
+        if (trunkCount > 0) {
+            
+            for (int i = trunkCount; i > 0; i--) {
+                trunk[i, 0] = trunk[i - 1, 0];
+                trunk[i, 1] = trunk[i - 1, 1];
+            }
+            trunk[0, 0] = y;
+            trunk[0, 1] = x;
+        }
+        
+    }
+    
     static void input() {
         if (Console.KeyAvailable) {
             //ConsoleKeyInfo cki = Console.ReadKey();
@@ -77,15 +110,19 @@ class Snake {
             //Console.WriteLine(key);
             switch (key) {
                 case 'w':
+                    slither(headY, headX);
                     headY--;
                     break;
                 case 's':
+                    slither(headY, headX);
                     headY++;
                     break;
                 case 'a':
+                    slither(headY, headX);
                     headX--;
                     break;
                 case 'd':
+                    slither(headY, headX);
                     headX++;
                     break;
                 default:
@@ -108,12 +145,7 @@ class Snake {
             fruitX = random.Next(1, width - 1);
             fruitY = random.Next(1, height - 1);
             trunkCount++;//don't think I need this
-            trunk[0, 0] = headY;
-            trunk[0, 1] = headX;
-            for (int i = trunkCount; i > 0; i--) {
-                trunk[i, 0] = trunk[i - 1, 0];
-                trunk[i, 1] = trunk[i - 1, 1];      //probably screwed up here
-            }
+            
             
         }
     }
@@ -124,6 +156,8 @@ class Snake {
             draw();
             input();
             logic();
+            //slither();
+
             Thread.Sleep(second/30);
         }
     }
