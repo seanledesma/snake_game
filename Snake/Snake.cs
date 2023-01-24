@@ -8,7 +8,7 @@ class Snake {
      * - need main game loop
      * - 
      */
-    private static bool play = true;
+    private static bool gameOver = false;
     private const int second = 1000;
     private const int height = 15;
     private const int width = 40;
@@ -27,6 +27,9 @@ class Snake {
             if (trunk[m, 0] == Y && trunk[m, 1] == X) {
                 return true;
             }
+
+            if (trunk[m, 0] == headY && trunk[m, 1] == headX)
+                gameOver = true;
         }
         return false;
     }
@@ -124,11 +127,9 @@ class Snake {
     
     /*
      * Logic to do list:
-     * - need to establish rule for body to follow head correctly
-     * - need to add one body part per fruit consumed
-     * - need to set bounds to play area (may be in different function though)
-     * - also need to make sure body continues in direction at certain speed (even if player does not touch anything)
-     * - once fruit is eaten, generate new random number for fruit pos
+     * - need to make sure body continues in direction at certain speed (even if player does not touch anything)
+     * - collision
+     * - score board
      */
     static void logic() {
         if (headX == fruitX && headY == fruitY) {
@@ -136,19 +137,26 @@ class Snake {
             fruitX = random.Next(1, width - 1);
             fruitY = random.Next(1, height - 1);
             trunkCount++;
-            
-            
         }
+
+        if (headX == -1 || headX == width-1)
+            gameOver = true;
+        if (headY == 0 || headY == height - 1)
+            gameOver = true;
+        //body collision added in drawAssist() to avoid extra for loops
+
     }
 
 
     static void Main(string[] args) {
-        while (play) {
+        while (gameOver == false) {
             draw();
             input();
             logic();
 
             Thread.Sleep(second/30);
         }
+        Console.WriteLine();
+        Console.WriteLine("Game Over!");
     }
 }
