@@ -10,8 +10,8 @@ class Snake {
      */
     private static bool play = true;
     private const int second = 1000;
-    private const int height = 16;
-    private const int width = 36;
+    private const int height = 15;
+    private const int width = 40;
     private static int snakeLength;
     private static int headX = 5;
     private static int headY = 7;
@@ -46,9 +46,6 @@ class Snake {
 
             if (i > 0 && i < height - 1) {
                 for (int k = 0; k < width; k++) { // print right side
-
-                    
-
                     
                     if (i == headY && k == headX) // print snake head
                         Console.Write("O");
@@ -62,8 +59,6 @@ class Snake {
                     
                     if (k == width - 1)
                         Console.Write("#");
-                        
-                    
                 }
             }
 
@@ -73,7 +68,6 @@ class Snake {
                     Console.Write("#");
                 }
             }
-
             Console.WriteLine();
         }
 
@@ -84,6 +78,8 @@ class Snake {
         Console.WriteLine(trunk[0, 1]);
         Console.WriteLine(trunk[1, 0]);
         Console.WriteLine(trunk[1, 1]);
+        Console.WriteLine(trunk[2, 0]);
+        Console.WriteLine(trunk[2, 1]);
     }
     
     
@@ -91,24 +87,18 @@ class Snake {
         //TODO: get the snake to slither once a second independent of game loop
         //but for right now just get body to follow head
         if (trunkCount > 0) {
-            
+            trunk[0, 0] = y;
+            trunk[0, 1] = x;
             for (int i = trunkCount; i > 0; i--) {
                 trunk[i, 0] = trunk[i - 1, 0];
                 trunk[i, 1] = trunk[i - 1, 1];
             }
-            trunk[0, 0] = y;
-            trunk[0, 1] = x;
         }
-        
     }
     
     static void input() {
         if (Console.KeyAvailable) {
-            //ConsoleKeyInfo cki = Console.ReadKey();
-            //Console.WriteLine(cki.KeyChar);
-
             char key = Console.ReadKey().KeyChar;
-            //Console.WriteLine(key);
             switch (key) {
                 case 'w':
                     slither(headY, headX);
@@ -145,7 +135,7 @@ class Snake {
             Random random = new Random();
             fruitX = random.Next(1, width - 1);
             fruitY = random.Next(1, height - 1);
-            trunkCount++;//don't think I need this
+            trunkCount++;
             
             
         }
@@ -157,7 +147,6 @@ class Snake {
             draw();
             input();
             logic();
-            //slither();
 
             Thread.Sleep(second/30);
         }
