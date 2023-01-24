@@ -18,7 +18,9 @@ class Snake {
     private static int fruitX = 12; // change this to random number
     private static int fruitY = 7; // change this to random number
     private static int trunkCount = 0;
-    private static int[,] trunk = new int[20,2];
+    private static int speed;
+    private static int direction = 0;
+    private static int[,] trunk = new int[40,2];//Probably should make array bigger or do something else, to avoid index out of bounds
 
 
     static bool drawAssist(int Y, int X) {      //fixes the problem we were having with the spaces and right wall
@@ -36,6 +38,7 @@ class Snake {
     
     static void draw() {
         Console.Clear();
+        Console.WriteLine("Score: " + trunkCount);
         for (int i = 0; i < height; i++) // main for loop to go down height
         {
             if (i == 0) {
@@ -74,15 +77,15 @@ class Snake {
             Console.WriteLine();
         }
 
-        Console.WriteLine("trunkCount size: " + trunkCount);
-        Console.WriteLine("headY: " + headY);
+        
+        /*Console.WriteLine("headY: " + headY);
         Console.WriteLine("headX: " + headX);
         Console.WriteLine(trunk[0, 0]);
         Console.WriteLine(trunk[0, 1]);
         Console.WriteLine(trunk[1, 0]);
         Console.WriteLine(trunk[1, 1]);
         Console.WriteLine(trunk[2, 0]);
-        Console.WriteLine(trunk[2, 1]);
+        Console.WriteLine(trunk[2, 1]);*/
     }
     
     
@@ -106,18 +109,22 @@ class Snake {
                 case 'w':
                     slither(headY, headX);
                     headY--;
+                    direction = 1;
                     break;
                 case 's':
                     slither(headY, headX);
                     headY++;
+                    direction = 2;
                     break;
                 case 'a':
                     slither(headY, headX);
                     headX--;
+                    direction = 3;
                     break;
                 case 'd':
                     slither(headY, headX);
                     headX++;
+                    direction = 4;
                     break;
                 default:
                     break;
@@ -128,10 +135,31 @@ class Snake {
     /*
      * Logic to do list:
      * - need to make sure body continues in direction at certain speed (even if player does not touch anything)
-     * - collision
      * - score board
+     * - perhaps all time score board as well
+     * - variable speed of slither??
      */
     static void logic() {
+        //second counter and slither here
+        // consider using Timer_Elapsed or System.Threading.Timer to count seconds instead of DateTime
+        
+        int millisecond = DateTime.Now.Millisecond;
+        //Console.WriteLine(millisecond);
+        //Console.WriteLine(direction);
+        if (millisecond == 8) {
+            Console.WriteLine("hello");
+            if (direction == 0)
+                headX++;
+            else if (direction == 1)
+                headY--;
+            else if (direction == 2)
+                headY++;
+            else if (direction == 3)
+                headX--;
+            else if (direction == 4)
+                headX++;
+        }
+        
         if (headX == fruitX && headY == fruitY) {
             Random random = new Random();
             fruitX = random.Next(1, width - 1);
@@ -139,7 +167,7 @@ class Snake {
             trunkCount++;
         }
 
-        if (headX == -1 || headX == width-1)
+        if (headX == -1 || headX == width - 1)
             gameOver = true;
         if (headY == 0 || headY == height - 1)
             gameOver = true;
@@ -157,6 +185,6 @@ class Snake {
             Thread.Sleep(second/30);
         }
         Console.WriteLine();
-        Console.WriteLine("Game Over!");
+        Console.WriteLine("Game Over!     Score: " + trunkCount);
     }
 }
