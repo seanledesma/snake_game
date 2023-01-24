@@ -19,8 +19,18 @@ class Snake {
     private static int fruitY = 7; // change this to random number
     private static int trunkCount = 0;
     private static int[,] trunk = new int[20,2];
-    
 
+
+    static bool drawAssist(int Y, int X) {      //fixes the problem we were having with the spaces and right wall
+        
+        for (int m = 0; m <= trunkCount; m++) {
+            if (trunk[m, 0] == Y && trunk[m, 1] == X) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     static void draw() {
         Console.Clear();
         for (int i = 0; i < height; i++) // main for loop to go down height
@@ -42,18 +52,9 @@ class Snake {
                     
                     if (i == headY && k == headX) // print snake head
                         Console.Write("O");
-                    else {
-                        for (int m = 0; m <= trunkCount; m++) {
-                            if (trunk[m, 0] == i && trunk[m, 1] == k) {
-                                //i == trunk[0, 0] && k == trunk[0, 1
-                                Console.Write("o");
-                            }
-                                
-                                
-                        }
-                    }
-                    
-                    if (i == fruitY && k == fruitX) // print fruit
+                    else if (drawAssist(i, k) == true)
+                            Console.Write("o");
+                    else if (i == fruitY && k == fruitX) // print fruit
                         Console.Write("F");
                     else if (k < width - 1) {
                         Console.Write(" ");
