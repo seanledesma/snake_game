@@ -1,13 +1,6 @@
 ﻿using System;
 
 class Snake {
-    /*
-     * Here is the layout for the program:
-     * - need a method to draw the border and fruit and snake
-     * - need a method to get input
-     * - need main game loop
-     * - 
-     */
     private static bool gameOver = false;
     private const int second = 1000;
     private const int height = 15;
@@ -78,16 +71,6 @@ class Snake {
             }
             Console.WriteLine();
         }
-
-        
-        /*Console.WriteLine("headY: " + headY);
-        Console.WriteLine("headX: " + headX);
-        Console.WriteLine(trunk[0, 0]);
-        Console.WriteLine(trunk[0, 1]);
-        Console.WriteLine(trunk[1, 0]);
-        Console.WriteLine(trunk[1, 1]);
-        Console.WriteLine(trunk[2, 0]);
-        Console.WriteLine(trunk[2, 1]);*/
     }
     
     
@@ -109,6 +92,7 @@ class Snake {
             char key = Console.ReadKey().KeyChar;
             switch (key) {
                 case 'w':
+                    //leaving the following method calls and such incase don't want auto slither
                     //slither(headY, headX);
                     //headY--;
                     direction = 1;
@@ -136,7 +120,7 @@ class Snake {
     
     /*
      * Logic to do list:
-     * - need to make sure body continues in direction at certain speed (even if player does not touch anything)
+     * OPTIONAL
      * - score board
      * - perhaps all time score board as well
      * - variable speed of slither??
@@ -159,26 +143,29 @@ class Snake {
     }
 
     private static void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
-        
-        if (direction == 0) {
-            slither(headY, headX);
-            headX++;
-        }
-        else if (direction == 1) {
-            slither(headY, headX);
-            headY--;
-        }
-        else if (direction == 2) {
-            slither(headY, headX);
-            headY++;
-        }
-        else if (direction == 3) {
-            slither(headY, headX);
-            headX--;
-        }
-        else if (direction == 4) {
-            slither(headY, headX);
-            headX++;
+        switch (direction) {
+            case 0: 
+                slither(headY, headX);
+                headX++;
+                break;
+            case 1:
+                slither(headY, headX);
+                headY--;
+                break;
+            case 2:
+                slither(headY, headX);
+                headY++;
+                break;
+            case 3:
+                slither(headY, headX);
+                headX--;
+                break;
+            case 4:
+                slither(headY, headX);
+                headX++;
+                break;
+            default:
+                break;
         }
     }
 
@@ -192,7 +179,7 @@ class Snake {
             input();
             logic();
             
-            Thread.Sleep(second/30);
+            Thread.Sleep(second/60);
         }
         Console.WriteLine();
         Console.WriteLine("Game Over!     Score: " + trunkCount);
