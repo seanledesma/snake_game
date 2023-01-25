@@ -18,7 +18,7 @@ class Snake {
     private static int fruitX = 12; // change this to random number
     private static int fruitY = 7; // change this to random number
     private static int trunkCount = 0;
-    private static int speed = 500;
+    private static int speed = 250;
     private static int direction = 0;
     private static int[,] trunk = new int[40,2];//Probably should make array bigger or do something else, to avoid index out of bounds
     private static System.Timers.Timer timer = new System.Timers.Timer();
@@ -31,7 +31,7 @@ class Snake {
             if (trunk[m, 0] == Y && trunk[m, 1] == X) {
                 return true;
             }
-
+            //body collision
             if (trunk[m, 0] == headY && trunk[m, 1] == headX)
                 gameOver = true;
         }
@@ -109,22 +109,22 @@ class Snake {
             char key = Console.ReadKey().KeyChar;
             switch (key) {
                 case 'w':
-                    slither(headY, headX);
+                    //slither(headY, headX);
                     //headY--;
                     direction = 1;
                     break;
                 case 's':
-                    slither(headY, headX);
+                    //slither(headY, headX);
                     //headY++;
                     direction = 2;
                     break;
                 case 'a':
-                    slither(headY, headX);
+                    //slither(headY, headX);
                     //headX--;
                     direction = 3;
                     break;
                 case 'd':
-                    slither(headY, headX);
+                    //slither(headY, headX);
                     //headX++;
                     direction = 4;
                     break;
@@ -161,24 +161,24 @@ class Snake {
     private static void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
         
         if (direction == 0) {
-            headX++;
             slither(headY, headX);
+            headX++;
         }
         else if (direction == 1) {
-            headY--;
             slither(headY, headX);
+            headY--;
         }
         else if (direction == 2) {
-            headY++;
             slither(headY, headX);
+            headY++;
         }
         else if (direction == 3) {
-            headX--;
             slither(headY, headX);
+            headX--;
         }
         else if (direction == 4) {
-            headX++;
             slither(headY, headX);
+            headX++;
         }
     }
 
