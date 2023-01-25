@@ -18,9 +18,11 @@ class Snake {
     private static int fruitX = 12; // change this to random number
     private static int fruitY = 7; // change this to random number
     private static int trunkCount = 0;
-    private static int speed;
+    private static int speed = 500;
     private static int direction = 0;
     private static int[,] trunk = new int[40,2];//Probably should make array bigger or do something else, to avoid index out of bounds
+    private static System.Timers.Timer timer = new System.Timers.Timer();
+    
 
 
     static bool drawAssist(int Y, int X) {      //fixes the problem we were having with the spaces and right wall
@@ -108,22 +110,22 @@ class Snake {
             switch (key) {
                 case 'w':
                     slither(headY, headX);
-                    headY--;
+                    //headY--;
                     direction = 1;
                     break;
                 case 's':
                     slither(headY, headX);
-                    headY++;
+                    //headY++;
                     direction = 2;
                     break;
                 case 'a':
                     slither(headY, headX);
-                    headX--;
+                    //headX--;
                     direction = 3;
                     break;
                 case 'd':
                     slither(headY, headX);
-                    headX++;
+                    //headX++;
                     direction = 4;
                     break;
                 default:
@@ -141,32 +143,13 @@ class Snake {
      */
     static void logic() {
         //second counter and slither here
-        // consider using Timer_Elapsed or System.Threading.Timer to count seconds instead of DateTime
-        
-        int millisecond = DateTime.Now.Millisecond;
-        //Console.WriteLine(millisecond);
-        //Console.WriteLine(direction);
-        if (millisecond == 8) {
-            Console.WriteLine("hello");
-            if (direction == 0)
-                headX++;
-            else if (direction == 1)
-                headY--;
-            else if (direction == 2)
-                headY++;
-            else if (direction == 3)
-                headX--;
-            else if (direction == 4)
-                headX++;
-        }
-        
         if (headX == fruitX && headY == fruitY) {
             Random random = new Random();
             fruitX = random.Next(1, width - 1);
             fruitY = random.Next(1, height - 1);
             trunkCount++;
         }
-
+        //wall collision
         if (headX == -1 || headX == width - 1)
             gameOver = true;
         if (headY == 0 || headY == height - 1)
@@ -175,16 +158,44 @@ class Snake {
 
     }
 
+    private static void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
+        
+        if (direction == 0) {
+            headX++;
+            slither(headY, headX);
+        }
+        else if (direction == 1) {
+            headY--;
+            slither(headY, headX);
+        }
+        else if (direction == 2) {
+            headY++;
+            slither(headY, headX);
+        }
+        else if (direction == 3) {
+            headX--;
+            slither(headY, headX);
+        }
+        else if (direction == 4) {
+            headX++;
+            slither(headY, headX);
+        }
+    }
+
 
     static void Main(string[] args) {
+        timer.Interval = speed;
+        timer.Elapsed += Timer_Elapsed;
+        timer.Start();
         while (gameOver == false) {
             draw();
             input();
             logic();
-
+            
             Thread.Sleep(second/30);
         }
         Console.WriteLine();
         Console.WriteLine("Game Over!     Score: " + trunkCount);
+        timer.Stop();
     }
 }
